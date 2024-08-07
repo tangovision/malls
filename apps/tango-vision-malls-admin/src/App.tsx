@@ -33,6 +33,10 @@ import { ContactLogList } from "./contactLog/ContactLogList";
 import { ContactLogCreate } from "./contactLog/ContactLogCreate";
 import { ContactLogEdit } from "./contactLog/ContactLogEdit";
 import { ContactLogShow } from "./contactLog/ContactLogShow";
+import { UserList } from "./user/UserList";
+import { UserCreate } from "./user/UserCreate";
+import { UserEdit } from "./user/UserEdit";
+import { UserShow } from "./user/UserShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -107,6 +111,13 @@ const App = (): React.ReactElement => {
           edit={ContactLogEdit}
           create={ContactLogCreate}
           show={ContactLogShow}
+        />
+        <Resource
+          name="User"
+          list={UserList}
+          edit={UserEdit}
+          create={UserCreate}
+          show={UserShow}
         />
       </Admin>
     </div>

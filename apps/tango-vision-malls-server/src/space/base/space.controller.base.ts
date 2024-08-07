@@ -33,6 +33,9 @@ export class SpaceControllerBase {
   constructor(protected readonly service: SpaceService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Space })
+  @swagger.ApiBody({
+    type: SpaceCreateInput,
+  })
   async createSpace(@common.Body() data: SpaceCreateInput): Promise<Space> {
     return await this.service.createSpace({
       data: data,
@@ -105,6 +108,9 @@ export class SpaceControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Space })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: SpaceUpdateInput,
+  })
   async updateSpace(
     @common.Param() params: SpaceWhereUniqueInput,
     @common.Body() data: SpaceUpdateInput

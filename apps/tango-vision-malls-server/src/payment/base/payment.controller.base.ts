@@ -27,6 +27,9 @@ export class PaymentControllerBase {
   constructor(protected readonly service: PaymentService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Payment })
+  @swagger.ApiBody({
+    type: PaymentCreateInput,
+  })
   async createPayment(
     @common.Body() data: PaymentCreateInput
   ): Promise<Payment> {
@@ -127,6 +130,9 @@ export class PaymentControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Payment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: PaymentUpdateInput,
+  })
   async updatePayment(
     @common.Param() params: PaymentWhereUniqueInput,
     @common.Body() data: PaymentUpdateInput
