@@ -27,6 +27,9 @@ export class ContactLogControllerBase {
   constructor(protected readonly service: ContactLogService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ContactLog })
+  @swagger.ApiBody({
+    type: ContactLogCreateInput,
+  })
   async createContactLog(
     @common.Body() data: ContactLogCreateInput
   ): Promise<ContactLog> {
@@ -124,6 +127,9 @@ export class ContactLogControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ContactLog })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: ContactLogUpdateInput,
+  })
   async updateContactLog(
     @common.Param() params: ContactLogWhereUniqueInput,
     @common.Body() data: ContactLogUpdateInput

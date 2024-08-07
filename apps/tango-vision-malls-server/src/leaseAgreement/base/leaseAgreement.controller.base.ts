@@ -27,6 +27,9 @@ export class LeaseAgreementControllerBase {
   constructor(protected readonly service: LeaseAgreementService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: LeaseAgreement })
+  @swagger.ApiBody({
+    type: LeaseAgreementCreateInput,
+  })
   async createLeaseAgreement(
     @common.Body() data: LeaseAgreementCreateInput
   ): Promise<LeaseAgreement> {
@@ -159,6 +162,9 @@ export class LeaseAgreementControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: LeaseAgreement })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: LeaseAgreementUpdateInput,
+  })
   async updateLeaseAgreement(
     @common.Param() params: LeaseAgreementWhereUniqueInput,
     @common.Body() data: LeaseAgreementUpdateInput

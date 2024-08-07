@@ -6,9 +6,11 @@ import { MallModule } from "./mall/mall.module";
 import { PaymentModule } from "./payment/payment.module";
 import { MaintenanceRequestModule } from "./maintenanceRequest/maintenanceRequest.module";
 import { ContactLogModule } from "./contactLog/contactLog.module";
+import { UserModule } from "./user/user.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
+import { StorageModule } from "./storage/storage.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
@@ -18,6 +20,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 @Module({
   controllers: [],
   imports: [
+    StorageModule,
     TenantModule,
     SpaceModule,
     LeaseAgreementModule,
@@ -25,6 +28,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     PaymentModule,
     MaintenanceRequestModule,
     ContactLogModule,
+    UserModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

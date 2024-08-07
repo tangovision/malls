@@ -27,6 +27,9 @@ export class MaintenanceRequestControllerBase {
   constructor(protected readonly service: MaintenanceRequestService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: MaintenanceRequest })
+  @swagger.ApiBody({
+    type: MaintenanceRequestCreateInput,
+  })
   async createMaintenanceRequest(
     @common.Body() data: MaintenanceRequestCreateInput
   ): Promise<MaintenanceRequest> {
@@ -153,6 +156,9 @@ export class MaintenanceRequestControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: MaintenanceRequest })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: MaintenanceRequestUpdateInput,
+  })
   async updateMaintenanceRequest(
     @common.Param() params: MaintenanceRequestWhereUniqueInput,
     @common.Body() data: MaintenanceRequestUpdateInput

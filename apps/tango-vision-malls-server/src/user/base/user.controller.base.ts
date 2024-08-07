@@ -16,58 +16,73 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import { MallService } from "../mall.service";
-import { MallCreateInput } from "./MallCreateInput";
-import { Mall } from "./Mall";
-import { MallFindManyArgs } from "./MallFindManyArgs";
-import { MallWhereUniqueInput } from "./MallWhereUniqueInput";
-import { MallUpdateInput } from "./MallUpdateInput";
+import { UserService } from "../user.service";
+import { UserCreateInput } from "./UserCreateInput";
+import { User } from "./User";
+import { UserFindManyArgs } from "./UserFindManyArgs";
+import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
+import { UserUpdateInput } from "./UserUpdateInput";
 
-export class MallControllerBase {
-  constructor(protected readonly service: MallService) {}
+export class UserControllerBase {
+  constructor(protected readonly service: UserService) {}
   @common.Post()
-  @swagger.ApiCreatedResponse({ type: Mall })
+  @swagger.ApiCreatedResponse({ type: User })
   @swagger.ApiBody({
-    type: MallCreateInput,
+    type: UserCreateInput,
   })
-  async createMall(@common.Body() data: MallCreateInput): Promise<Mall> {
-    return await this.service.createMall({
+  async createUser(@common.Body() data: UserCreateInput): Promise<User> {
+    return await this.service.createUser({
       data: data,
       select: {
         createdAt: true,
+        email: true,
+        firstName: true,
         id: true,
+        lastName: true,
+        roles: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
 
   @common.Get()
-  @swagger.ApiOkResponse({ type: [Mall] })
-  @ApiNestedQuery(MallFindManyArgs)
-  async malls(@common.Req() request: Request): Promise<Mall[]> {
-    const args = plainToClass(MallFindManyArgs, request.query);
-    return this.service.malls({
+  @swagger.ApiOkResponse({ type: [User] })
+  @ApiNestedQuery(UserFindManyArgs)
+  async users(@common.Req() request: Request): Promise<User[]> {
+    const args = plainToClass(UserFindManyArgs, request.query);
+    return this.service.users({
       ...args,
       select: {
         createdAt: true,
+        email: true,
+        firstName: true,
         id: true,
+        lastName: true,
+        roles: true,
         updatedAt: true,
+        username: true,
       },
     });
   }
 
   @common.Get("/:id")
-  @swagger.ApiOkResponse({ type: Mall })
+  @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async mall(
-    @common.Param() params: MallWhereUniqueInput
-  ): Promise<Mall | null> {
-    const result = await this.service.mall({
+  async user(
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<User | null> {
+    const result = await this.service.user({
       where: params,
       select: {
         createdAt: true,
+        email: true,
+        firstName: true,
         id: true,
+        lastName: true,
+        roles: true,
         updatedAt: true,
+        username: true,
       },
     });
     if (result === null) {
@@ -79,23 +94,28 @@ export class MallControllerBase {
   }
 
   @common.Patch("/:id")
-  @swagger.ApiOkResponse({ type: Mall })
+  @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiBody({
-    type: MallUpdateInput,
+    type: UserUpdateInput,
   })
-  async updateMall(
-    @common.Param() params: MallWhereUniqueInput,
-    @common.Body() data: MallUpdateInput
-  ): Promise<Mall | null> {
+  async updateUser(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() data: UserUpdateInput
+  ): Promise<User | null> {
     try {
-      return await this.service.updateMall({
+      return await this.service.updateUser({
         where: params,
         data: data,
         select: {
           createdAt: true,
+          email: true,
+          firstName: true,
           id: true,
+          lastName: true,
+          roles: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -109,18 +129,23 @@ export class MallControllerBase {
   }
 
   @common.Delete("/:id")
-  @swagger.ApiOkResponse({ type: Mall })
+  @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  async deleteMall(
-    @common.Param() params: MallWhereUniqueInput
-  ): Promise<Mall | null> {
+  async deleteUser(
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<User | null> {
     try {
-      return await this.service.deleteMall({
+      return await this.service.deleteUser({
         where: params,
         select: {
           createdAt: true,
+          email: true,
+          firstName: true,
           id: true,
+          lastName: true,
+          roles: true,
           updatedAt: true,
+          username: true,
         },
       });
     } catch (error) {
