@@ -118,6 +118,130 @@ model User {
   username  String   @unique
 }
 
+model Promotion {
+  createdAt           DateTime  @default(now())
+  description         String?
+  discount            String?
+  endDate             DateTime?
+  id                  String    @id @default(cuid())
+  participatingStores String?
+  promotionId         String?
+  startDate           DateTime?
+  title               String?
+  updatedAt           DateTime  @updatedAt
+}
+
+model Visitor {
+  createdAt         DateTime       @default(now())
+  email             String?
+  feedback          String?
+  feedbacks         Feedback[]
+  id                String         @id @default(cuid())
+  name              String?
+  phone             String?
+  preferences       String?
+  storeReviewsItems StoreReviews[]
+  updatedAt         DateTime       @updatedAt
+  visitDate         DateTime?
+  visitorId         String?
+}
+
+model Feedback {
+  comments       String?
+  createdAt      DateTime                    @default(now())
+  date           DateTime?
+  feedbackId     String?
+  id             String                      @id @default(cuid())
+  rating         Int?
+  responseStatus EnumFeedbackResponseStatus?
+  updatedAt      DateTime                    @updatedAt
+  visitor        Visitor?                    @relation(fields: [visitorId], references: [id])
+  visitorId      String?
+}
+
+model Event {
+  createdAt    DateTime         @default(now())
+  description  String?
+  endDate      DateTime?
+  eventId      String?
+  id           String           @id @default(cuid())
+  location     String?
+  name         String?
+  organizer    String?
+  participants String?
+  startDate    DateTime?
+  status       EnumEventStatus?
+  updatedAt    DateTime         @updatedAt
+}
+
+model LoyaltyProgram {
+  createdAt        DateTime  @default(now())
+  description      String?
+  endDate          DateTime?
+  id               String    @id @default(cuid())
+  loyaltyProgramId String?
+  name             String?
+  participants     String?
+  pointsEarned     Int?
+  rewards          String?
+  startDate        DateTime?
+  updatedAt        DateTime  @updatedAt
+}
+
+model Store {
+  category          String?
+  contactNumber     String?
+  contactPerson     String?
+  createdAt         DateTime       @default(now())
+  email             String?
+  id                String         @id @default(cuid())
+  location          String?
+  name              String?
+  openingHours      String?
+  socialMediaLinks  String?
+  storeId           String?
+  storeReviewsItems StoreReviews[]
+  updatedAt         DateTime       @updatedAt
+  website           String?
+}
+
+model NewsletterSubscription {
+  createdAt        DateTime                          @default(now())
+  email            String?
+  id               String                            @id @default(cuid())
+  status           EnumNewsletterSubscriptionStatus?
+  subscriptionDate DateTime?
+  subscriptionId   String?
+  updatedAt        DateTime                          @updatedAt
+}
+
+model StoreReviews {
+  comments  String?
+  createdAt DateTime  @default(now())
+  date      DateTime?
+  id        String    @id @default(cuid())
+  rating    Int?
+  reviewId  String?
+  store     Store?    @relation(fields: [storeId], references: [id])
+  storeId   String?
+  updatedAt DateTime  @updatedAt
+  visitor   Visitor?  @relation(fields: [visitorId], references: [id])
+  visitorId String?
+}
+
+model Advertisement {
+  adId           String?
+  createdAt      DateTime  @default(now())
+  description    String?
+  endDate        DateTime?
+  id             String    @id @default(cuid())
+  placement      String?
+  startDate      DateTime?
+  targetAudience String?
+  title          String?
+  updatedAt      DateTime  @updatedAt
+}
+
 enum EnumTenantStatus {
   Option1
 }
@@ -131,5 +255,17 @@ enum EnumPaymentPaymentStatus {
 }
 
 enum EnumMaintenanceRequestStatus {
+  Option1
+}
+
+enum EnumFeedbackResponseStatus {
+  Option1
+}
+
+enum EnumEventStatus {
+  Option1
+}
+
+enum EnumNewsletterSubscriptionStatus {
   Option1
 }

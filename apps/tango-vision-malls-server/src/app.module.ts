@@ -7,6 +7,15 @@ import { PaymentModule } from "./payment/payment.module";
 import { MaintenanceRequestModule } from "./maintenanceRequest/maintenanceRequest.module";
 import { ContactLogModule } from "./contactLog/contactLog.module";
 import { UserModule } from "./user/user.module";
+import { PromotionModule } from "./promotion/promotion.module";
+import { VisitorModule } from "./visitor/visitor.module";
+import { FeedbackModule } from "./feedback/feedback.module";
+import { EventModule } from "./event/event.module";
+import { LoyaltyProgramModule } from "./loyaltyProgram/loyaltyProgram.module";
+import { StoreModule } from "./store/store.module";
+import { NewsletterSubscriptionModule } from "./newsletterSubscription/newsletterSubscription.module";
+import { StoreReviewsModule } from "./storeReviews/storeReviews.module";
+import { AdvertisementModule } from "./advertisement/advertisement.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -29,6 +38,15 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     MaintenanceRequestModule,
     ContactLogModule,
     UserModule,
+    PromotionModule,
+    VisitorModule,
+    FeedbackModule,
+    EventModule,
+    LoyaltyProgramModule,
+    StoreModule,
+    NewsletterSubscriptionModule,
+    StoreReviewsModule,
+    AdvertisementModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

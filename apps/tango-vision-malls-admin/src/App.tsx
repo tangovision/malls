@@ -37,6 +37,42 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
+import { PromotionList } from "./promotion/PromotionList";
+import { PromotionCreate } from "./promotion/PromotionCreate";
+import { PromotionEdit } from "./promotion/PromotionEdit";
+import { PromotionShow } from "./promotion/PromotionShow";
+import { VisitorList } from "./visitor/VisitorList";
+import { VisitorCreate } from "./visitor/VisitorCreate";
+import { VisitorEdit } from "./visitor/VisitorEdit";
+import { VisitorShow } from "./visitor/VisitorShow";
+import { FeedbackList } from "./feedback/FeedbackList";
+import { FeedbackCreate } from "./feedback/FeedbackCreate";
+import { FeedbackEdit } from "./feedback/FeedbackEdit";
+import { FeedbackShow } from "./feedback/FeedbackShow";
+import { EventList } from "./event/EventList";
+import { EventCreate } from "./event/EventCreate";
+import { EventEdit } from "./event/EventEdit";
+import { EventShow } from "./event/EventShow";
+import { LoyaltyProgramList } from "./loyaltyProgram/LoyaltyProgramList";
+import { LoyaltyProgramCreate } from "./loyaltyProgram/LoyaltyProgramCreate";
+import { LoyaltyProgramEdit } from "./loyaltyProgram/LoyaltyProgramEdit";
+import { LoyaltyProgramShow } from "./loyaltyProgram/LoyaltyProgramShow";
+import { StoreList } from "./store/StoreList";
+import { StoreCreate } from "./store/StoreCreate";
+import { StoreEdit } from "./store/StoreEdit";
+import { StoreShow } from "./store/StoreShow";
+import { NewsletterSubscriptionList } from "./newsletterSubscription/NewsletterSubscriptionList";
+import { NewsletterSubscriptionCreate } from "./newsletterSubscription/NewsletterSubscriptionCreate";
+import { NewsletterSubscriptionEdit } from "./newsletterSubscription/NewsletterSubscriptionEdit";
+import { NewsletterSubscriptionShow } from "./newsletterSubscription/NewsletterSubscriptionShow";
+import { StoreReviewsList } from "./storeReviews/StoreReviewsList";
+import { StoreReviewsCreate } from "./storeReviews/StoreReviewsCreate";
+import { StoreReviewsEdit } from "./storeReviews/StoreReviewsEdit";
+import { StoreReviewsShow } from "./storeReviews/StoreReviewsShow";
+import { AdvertisementList } from "./advertisement/AdvertisementList";
+import { AdvertisementCreate } from "./advertisement/AdvertisementCreate";
+import { AdvertisementEdit } from "./advertisement/AdvertisementEdit";
+import { AdvertisementShow } from "./advertisement/AdvertisementShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -118,6 +154,69 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
+        />
+        <Resource
+          name="Promotion"
+          list={PromotionList}
+          edit={PromotionEdit}
+          create={PromotionCreate}
+          show={PromotionShow}
+        />
+        <Resource
+          name="Visitor"
+          list={VisitorList}
+          edit={VisitorEdit}
+          create={VisitorCreate}
+          show={VisitorShow}
+        />
+        <Resource
+          name="Feedback"
+          list={FeedbackList}
+          edit={FeedbackEdit}
+          create={FeedbackCreate}
+          show={FeedbackShow}
+        />
+        <Resource
+          name="Event"
+          list={EventList}
+          edit={EventEdit}
+          create={EventCreate}
+          show={EventShow}
+        />
+        <Resource
+          name="LoyaltyProgram"
+          list={LoyaltyProgramList}
+          edit={LoyaltyProgramEdit}
+          create={LoyaltyProgramCreate}
+          show={LoyaltyProgramShow}
+        />
+        <Resource
+          name="Store"
+          list={StoreList}
+          edit={StoreEdit}
+          create={StoreCreate}
+          show={StoreShow}
+        />
+        <Resource
+          name="NewsletterSubscription"
+          list={NewsletterSubscriptionList}
+          edit={NewsletterSubscriptionEdit}
+          create={NewsletterSubscriptionCreate}
+          show={NewsletterSubscriptionShow}
+        />
+        <Resource
+          name="StoreReviews"
+          list={StoreReviewsList}
+          edit={StoreReviewsEdit}
+          create={StoreReviewsCreate}
+          show={StoreReviewsShow}
+        />
+        <Resource
+          name="Advertisement"
+          list={AdvertisementList}
+          edit={AdvertisementEdit}
+          create={AdvertisementCreate}
+          show={AdvertisementShow}
         />
       </Admin>
     </div>
