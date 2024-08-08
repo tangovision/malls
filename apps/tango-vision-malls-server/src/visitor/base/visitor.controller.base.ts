@@ -28,6 +28,9 @@ import { FeedbackWhereUniqueInput } from "../../feedback/base/FeedbackWhereUniqu
 import { StoreReviewsFindManyArgs } from "../../storeReviews/base/StoreReviewsFindManyArgs";
 import { StoreReviews } from "../../storeReviews/base/StoreReviews";
 import { StoreReviewsWhereUniqueInput } from "../../storeReviews/base/StoreReviewsWhereUniqueInput";
+import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
+import { Ticket } from "../../ticket/base/Ticket";
+import { TicketWhereUniqueInput } from "../../ticket/base/TicketWhereUniqueInput";
 
 export class VisitorControllerBase {
   constructor(protected readonly service: VisitorService) {}
@@ -342,6 +345,103 @@ export class VisitorControllerBase {
   ): Promise<void> {
     const data = {
       storeReviewsItems: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateVisitor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Get("/:id/tickets")
+  @ApiNestedQuery(TicketFindManyArgs)
+  async findTickets(
+    @common.Req() request: Request,
+    @common.Param() params: VisitorWhereUniqueInput
+  ): Promise<Ticket[]> {
+    const query = plainToClass(TicketFindManyArgs, request.query);
+    const results = await this.service.findTickets(params.id, {
+      ...query,
+      select: {
+        assignedTo: true,
+        category: true,
+        createdAt: true,
+        creationDate: true,
+        description: true,
+        dueDate: true,
+        id: true,
+        priority: true,
+        resolution: true,
+        resolutionDate: true,
+        status: true,
+
+        tenant: {
+          select: {
+            id: true,
+          },
+        },
+
+        title: true,
+        updatedAt: true,
+
+        visitor: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/tickets")
+  async connectTickets(
+    @common.Param() params: VisitorWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
+        connect: body,
+      },
+    };
+    await this.service.updateVisitor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/tickets")
+  async updateTickets(
+    @common.Param() params: VisitorWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
+        set: body,
+      },
+    };
+    await this.service.updateVisitor({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/tickets")
+  async disconnectTickets(
+    @common.Param() params: VisitorWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
         disconnect: body,
       },
     };

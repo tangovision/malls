@@ -18,6 +18,7 @@ import {
   LeaseAgreement as PrismaLeaseAgreement,
   MaintenanceRequest as PrismaMaintenanceRequest,
   Payment as PrismaPayment,
+  Ticket as PrismaTicket,
 } from "@prisma/client";
 
 export class TenantServiceBase {
@@ -87,5 +88,16 @@ export class TenantServiceBase {
         where: { id: parentId },
       })
       .payments(args);
+  }
+
+  async findTickets(
+    parentId: string,
+    args: Prisma.TicketFindManyArgs
+  ): Promise<PrismaTicket[]> {
+    return this.prisma.tenant
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .tickets(args);
   }
 }

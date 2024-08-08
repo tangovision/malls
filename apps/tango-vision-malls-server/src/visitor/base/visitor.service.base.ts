@@ -16,6 +16,7 @@ import {
   Visitor as PrismaVisitor,
   Feedback as PrismaFeedback,
   StoreReviews as PrismaStoreReviews,
+  Ticket as PrismaTicket,
 } from "@prisma/client";
 
 export class VisitorServiceBase {
@@ -63,5 +64,16 @@ export class VisitorServiceBase {
         where: { id: parentId },
       })
       .storeReviewsItems(args);
+  }
+
+  async findTickets(
+    parentId: string,
+    args: Prisma.TicketFindManyArgs
+  ): Promise<PrismaTicket[]> {
+    return this.prisma.visitor
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .tickets(args);
   }
 }

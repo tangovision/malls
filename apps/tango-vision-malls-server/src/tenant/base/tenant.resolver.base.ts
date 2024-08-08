@@ -28,6 +28,8 @@ import { MaintenanceRequestFindManyArgs } from "../../maintenanceRequest/base/Ma
 import { MaintenanceRequest } from "../../maintenanceRequest/base/MaintenanceRequest";
 import { PaymentFindManyArgs } from "../../payment/base/PaymentFindManyArgs";
 import { Payment } from "../../payment/base/Payment";
+import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
+import { Ticket } from "../../ticket/base/Ticket";
 import { TenantService } from "../tenant.service";
 @graphql.Resolver(() => Tenant)
 export class TenantResolverBase {
@@ -151,6 +153,20 @@ export class TenantResolverBase {
     @graphql.Args() args: PaymentFindManyArgs
   ): Promise<Payment[]> {
     const results = await this.service.findPayments(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @graphql.ResolveField(() => [Ticket], { name: "tickets" })
+  async findTickets(
+    @graphql.Parent() parent: Tenant,
+    @graphql.Args() args: TicketFindManyArgs
+  ): Promise<Ticket[]> {
+    const results = await this.service.findTickets(parent.id, args);
 
     if (!results) {
       return [];

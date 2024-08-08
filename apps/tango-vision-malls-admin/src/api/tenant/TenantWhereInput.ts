@@ -6,6 +6,7 @@ import { MaintenanceRequestListRelationFilter } from "../maintenanceRequest/Main
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { PaymentListRelationFilter } from "../payment/PaymentListRelationFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { TicketListRelationFilter } from "../ticket/TicketListRelationFilter";
 
 export type TenantWhereInput = {
   businessType?: StringNullableFilter;
@@ -21,4 +22,5 @@ export type TenantWhereInput = {
   payments?: PaymentListRelationFilter;
   status?: "Option1";
   tenantId?: IntNullableFilter;
+  tickets?: TicketListRelationFilter;
 };

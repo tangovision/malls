@@ -21,6 +21,7 @@ import {
 import { FeedbackUpdateManyWithoutVisitorsInput } from "./FeedbackUpdateManyWithoutVisitorsInput";
 import { Type } from "class-transformer";
 import { StoreReviewsUpdateManyWithoutVisitorsInput } from "./StoreReviewsUpdateManyWithoutVisitorsInput";
+import { TicketUpdateManyWithoutVisitorsInput } from "./TicketUpdateManyWithoutVisitorsInput";
 
 @InputType()
 class VisitorUpdateInput {
@@ -106,6 +107,18 @@ class VisitorUpdateInput {
     nullable: true,
   })
   storeReviewsItems?: StoreReviewsUpdateManyWithoutVisitorsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketUpdateManyWithoutVisitorsInput,
+  })
+  @ValidateNested()
+  @Type(() => TicketUpdateManyWithoutVisitorsInput)
+  @IsOptional()
+  @Field(() => TicketUpdateManyWithoutVisitorsInput, {
+    nullable: true,
+  })
+  tickets?: TicketUpdateManyWithoutVisitorsInput;
 
   @ApiProperty({
     required: false,

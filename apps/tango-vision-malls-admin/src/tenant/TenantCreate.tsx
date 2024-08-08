@@ -16,6 +16,7 @@ import { ContactLogTitle } from "../contactLog/ContactLogTitle";
 import { LeaseAgreementTitle } from "../leaseAgreement/LeaseAgreementTitle";
 import { MaintenanceRequestTitle } from "../maintenanceRequest/MaintenanceRequestTitle";
 import { PaymentTitle } from "../payment/PaymentTitle";
+import { TicketTitle } from "../ticket/TicketTitle";
 
 export const TenantCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -68,6 +69,14 @@ export const TenantCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <NumberInput step={1} label="TenantID" source="tenantId" />
+        <ReferenceArrayInput
+          source="tickets"
+          reference="Ticket"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={TicketTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

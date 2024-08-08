@@ -30,6 +30,7 @@ import { LeaseAgreementUpdateManyWithoutTenantsInput } from "./LeaseAgreementUpd
 import { MaintenanceRequestUpdateManyWithoutTenantsInput } from "./MaintenanceRequestUpdateManyWithoutTenantsInput";
 import { PaymentUpdateManyWithoutTenantsInput } from "./PaymentUpdateManyWithoutTenantsInput";
 import { EnumTenantStatus } from "./EnumTenantStatus";
+import { TicketUpdateManyWithoutTenantsInput } from "./TicketUpdateManyWithoutTenantsInput";
 
 @InputType()
 class TenantUpdateInput {
@@ -174,6 +175,18 @@ class TenantUpdateInput {
     nullable: true,
   })
   tenantId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketUpdateManyWithoutTenantsInput,
+  })
+  @ValidateNested()
+  @Type(() => TicketUpdateManyWithoutTenantsInput)
+  @IsOptional()
+  @Field(() => TicketUpdateManyWithoutTenantsInput, {
+    nullable: true,
+  })
+  tickets?: TicketUpdateManyWithoutTenantsInput;
 }
 
 export { TenantUpdateInput as TenantUpdateInput };

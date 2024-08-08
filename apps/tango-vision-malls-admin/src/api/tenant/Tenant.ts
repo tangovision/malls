@@ -2,6 +2,7 @@ import { ContactLog } from "../contactLog/ContactLog";
 import { LeaseAgreement } from "../leaseAgreement/LeaseAgreement";
 import { MaintenanceRequest } from "../maintenanceRequest/MaintenanceRequest";
 import { Payment } from "../payment/Payment";
+import { Ticket } from "../ticket/Ticket";
 
 export type Tenant = {
   businessType: string | null;
@@ -18,5 +19,6 @@ export type Tenant = {
   payments?: Array<Payment>;
   status?: "Option1" | null;
   tenantId: number | null;
+  tickets?: Array<Ticket>;
   updatedAt: Date;
 };

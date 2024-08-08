@@ -24,6 +24,8 @@ import { FeedbackFindManyArgs } from "../../feedback/base/FeedbackFindManyArgs";
 import { Feedback } from "../../feedback/base/Feedback";
 import { StoreReviewsFindManyArgs } from "../../storeReviews/base/StoreReviewsFindManyArgs";
 import { StoreReviews } from "../../storeReviews/base/StoreReviews";
+import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
+import { Ticket } from "../../ticket/base/Ticket";
 import { VisitorService } from "../visitor.service";
 @graphql.Resolver(() => Visitor)
 export class VisitorResolverBase {
@@ -121,6 +123,20 @@ export class VisitorResolverBase {
     @graphql.Args() args: StoreReviewsFindManyArgs
   ): Promise<StoreReviews[]> {
     const results = await this.service.findStoreReviewsItems(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @graphql.ResolveField(() => [Ticket], { name: "tickets" })
+  async findTickets(
+    @graphql.Parent() parent: Visitor,
+    @graphql.Args() args: TicketFindManyArgs
+  ): Promise<Ticket[]> {
+    const results = await this.service.findTickets(parent.id, args);
 
     if (!results) {
       return [];

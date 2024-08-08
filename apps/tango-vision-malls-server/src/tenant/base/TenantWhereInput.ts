@@ -22,6 +22,7 @@ import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { PaymentListRelationFilter } from "../../payment/base/PaymentListRelationFilter";
 import { EnumTenantStatus } from "./EnumTenantStatus";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { TicketListRelationFilter } from "../../ticket/base/TicketListRelationFilter";
 
 @InputType()
 class TenantWhereInput {
@@ -171,6 +172,18 @@ class TenantWhereInput {
     nullable: true,
   })
   tenantId?: IntNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => TicketListRelationFilter)
+  @IsOptional()
+  @Field(() => TicketListRelationFilter, {
+    nullable: true,
+  })
+  tickets?: TicketListRelationFilter;
 }
 
 export { TenantWhereInput as TenantWhereInput };

@@ -30,6 +30,7 @@ import { LeaseAgreement } from "../../leaseAgreement/base/LeaseAgreement";
 import { MaintenanceRequest } from "../../maintenanceRequest/base/MaintenanceRequest";
 import { Payment } from "../../payment/base/Payment";
 import { EnumTenantStatus } from "./EnumTenantStatus";
+import { Ticket } from "../../ticket/base/Ticket";
 
 @ObjectType()
 class Tenant {
@@ -178,6 +179,15 @@ class Tenant {
     nullable: true,
   })
   tenantId!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Ticket],
+  })
+  @ValidateNested()
+  @Type(() => Ticket)
+  @IsOptional()
+  tickets?: Array<Ticket>;
 
   @ApiProperty({
     required: true,

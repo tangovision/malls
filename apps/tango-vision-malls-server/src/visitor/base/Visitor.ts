@@ -21,6 +21,7 @@ import {
 import { Type } from "class-transformer";
 import { Feedback } from "../../feedback/base/Feedback";
 import { StoreReviews } from "../../storeReviews/base/StoreReviews";
+import { Ticket } from "../../ticket/base/Ticket";
 
 @ObjectType()
 class Visitor {
@@ -116,6 +117,15 @@ class Visitor {
   @Type(() => StoreReviews)
   @IsOptional()
   storeReviewsItems?: Array<StoreReviews>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Ticket],
+  })
+  @ValidateNested()
+  @Type(() => Ticket)
+  @IsOptional()
+  tickets?: Array<Ticket>;
 
   @ApiProperty({
     required: true,

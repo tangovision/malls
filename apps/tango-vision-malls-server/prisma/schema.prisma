@@ -22,6 +22,7 @@ model Tenant {
   payments            Payment[]
   status              EnumTenantStatus?
   tenantId            Int?
+  tickets             Ticket[]
   updatedAt           DateTime             @updatedAt
 }
 
@@ -141,6 +142,7 @@ model Visitor {
   phone             String?
   preferences       String?
   storeReviewsItems StoreReviews[]
+  tickets           Ticket[]
   updatedAt         DateTime       @updatedAt
   visitDate         DateTime?
   visitorId         String?
@@ -242,6 +244,100 @@ model Advertisement {
   updatedAt      DateTime  @updatedAt
 }
 
+model Ticket {
+  assignedTo     String?
+  category       String?
+  createdAt      DateTime            @default(now())
+  creationDate   DateTime?
+  description    String?
+  dueDate        DateTime?
+  id             String              @id @default(cuid())
+  priority       EnumTicketPriority?
+  resolution     String?
+  resolutionDate DateTime?
+  status         EnumTicketStatus?
+  tenant         Tenant?             @relation(fields: [tenantId], references: [id])
+  tenantId       String?
+  title          String?
+  updatedAt      DateTime            @updatedAt
+  visitor        Visitor?            @relation(fields: [visitorId], references: [id])
+  visitorId      String?
+}
+
+model SupportStaff {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model CustomerFeedback {
+  comments  String?
+  createdAt DateTime  @default(now())
+  date      DateTime?
+  id        String    @id @default(cuid())
+  rating    Int?
+  updatedAt DateTime  @updatedAt
+}
+
+model IssueCategory {
+  createdAt        DateTime @default(now())
+  description      String?
+  id               String   @id @default(cuid())
+  name             String?
+  parentCategoryId String?
+  updatedAt        DateTime @updatedAt
+}
+
+model KnowledgeBaseArticle {
+  author          String?
+  categoryId      String?
+  content         String?
+  createdAt       DateTime  @default(now())
+  creationDate    DateTime?
+  id              String    @id @default(cuid())
+  lastUpdatedDate DateTime?
+  tags            String?
+  title           String?
+  updatedAt       DateTime  @updatedAt
+}
+
+model ServiceLevelAgreement {
+  createdAt      DateTime                           @default(now())
+  description    String?
+  id             String                             @id @default(cuid())
+  name           String?
+  penalties      String?
+  priority       EnumServiceLevelAgreementPriority?
+  resolutionTime Int?
+  responseTime   Int?
+  updatedAt      DateTime                           @updatedAt
+}
+
+model ServiceRequest {
+  assignedTo     String?
+  completionDate DateTime?
+  createdAt      DateTime                  @default(now())
+  creationDate   DateTime?
+  description    String?
+  id             String                    @id @default(cuid())
+  requestType    String?
+  status         EnumServiceRequestStatus?
+  updatedAt      DateTime                  @updatedAt
+}
+
+model Asset {
+  assignedTo             String?
+  category               String?
+  createdAt              DateTime         @default(now())
+  id                     String           @id @default(cuid())
+  location               String?
+  name                   String?
+  purchaseDate           DateTime?
+  status                 EnumAssetStatus?
+  updatedAt              DateTime         @updatedAt
+  warrantyExpirationDate DateTime?
+}
+
 enum EnumTenantStatus {
   Option1
 }
@@ -267,5 +363,25 @@ enum EnumEventStatus {
 }
 
 enum EnumNewsletterSubscriptionStatus {
+  Option1
+}
+
+enum EnumTicketPriority {
+  Option1
+}
+
+enum EnumTicketStatus {
+  Option1
+}
+
+enum EnumServiceLevelAgreementPriority {
+  Option1
+}
+
+enum EnumServiceRequestStatus {
+  Option1
+}
+
+enum EnumAssetStatus {
   Option1
 }
