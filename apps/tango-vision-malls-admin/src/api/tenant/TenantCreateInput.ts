@@ -2,6 +2,7 @@ import { ContactLogCreateNestedManyWithoutTenantsInput } from "./ContactLogCreat
 import { LeaseAgreementCreateNestedManyWithoutTenantsInput } from "./LeaseAgreementCreateNestedManyWithoutTenantsInput";
 import { MaintenanceRequestCreateNestedManyWithoutTenantsInput } from "./MaintenanceRequestCreateNestedManyWithoutTenantsInput";
 import { PaymentCreateNestedManyWithoutTenantsInput } from "./PaymentCreateNestedManyWithoutTenantsInput";
+import { TicketCreateNestedManyWithoutTenantsInput } from "./TicketCreateNestedManyWithoutTenantsInput";
 
 export type TenantCreateInput = {
   businessType?: string | null;
@@ -16,4 +17,5 @@ export type TenantCreateInput = {
   payments?: PaymentCreateNestedManyWithoutTenantsInput;
   status?: "Option1" | null;
   tenantId?: number | null;
+  tickets?: TicketCreateNestedManyWithoutTenantsInput;
 };

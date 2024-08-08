@@ -30,6 +30,7 @@ import { LeaseAgreementCreateNestedManyWithoutTenantsInput } from "./LeaseAgreem
 import { MaintenanceRequestCreateNestedManyWithoutTenantsInput } from "./MaintenanceRequestCreateNestedManyWithoutTenantsInput";
 import { PaymentCreateNestedManyWithoutTenantsInput } from "./PaymentCreateNestedManyWithoutTenantsInput";
 import { EnumTenantStatus } from "./EnumTenantStatus";
+import { TicketCreateNestedManyWithoutTenantsInput } from "./TicketCreateNestedManyWithoutTenantsInput";
 
 @InputType()
 class TenantCreateInput {
@@ -174,6 +175,18 @@ class TenantCreateInput {
     nullable: true,
   })
   tenantId?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketCreateNestedManyWithoutTenantsInput,
+  })
+  @ValidateNested()
+  @Type(() => TicketCreateNestedManyWithoutTenantsInput)
+  @IsOptional()
+  @Field(() => TicketCreateNestedManyWithoutTenantsInput, {
+    nullable: true,
+  })
+  tickets?: TicketCreateNestedManyWithoutTenantsInput;
 }
 
 export { TenantCreateInput as TenantCreateInput };

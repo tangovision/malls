@@ -21,6 +21,7 @@ import {
 import { FeedbackCreateNestedManyWithoutVisitorsInput } from "./FeedbackCreateNestedManyWithoutVisitorsInput";
 import { Type } from "class-transformer";
 import { StoreReviewsCreateNestedManyWithoutVisitorsInput } from "./StoreReviewsCreateNestedManyWithoutVisitorsInput";
+import { TicketCreateNestedManyWithoutVisitorsInput } from "./TicketCreateNestedManyWithoutVisitorsInput";
 
 @InputType()
 class VisitorCreateInput {
@@ -106,6 +107,18 @@ class VisitorCreateInput {
     nullable: true,
   })
   storeReviewsItems?: StoreReviewsCreateNestedManyWithoutVisitorsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketCreateNestedManyWithoutVisitorsInput,
+  })
+  @ValidateNested()
+  @Type(() => TicketCreateNestedManyWithoutVisitorsInput)
+  @IsOptional()
+  @Field(() => TicketCreateNestedManyWithoutVisitorsInput, {
+    nullable: true,
+  })
+  tickets?: TicketCreateNestedManyWithoutVisitorsInput;
 
   @ApiProperty({
     required: false,

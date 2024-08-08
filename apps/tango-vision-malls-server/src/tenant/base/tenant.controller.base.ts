@@ -34,6 +34,9 @@ import { MaintenanceRequestWhereUniqueInput } from "../../maintenanceRequest/bas
 import { PaymentFindManyArgs } from "../../payment/base/PaymentFindManyArgs";
 import { Payment } from "../../payment/base/Payment";
 import { PaymentWhereUniqueInput } from "../../payment/base/PaymentWhereUniqueInput";
+import { TicketFindManyArgs } from "../../ticket/base/TicketFindManyArgs";
+import { Ticket } from "../../ticket/base/Ticket";
+import { TicketWhereUniqueInput } from "../../ticket/base/TicketWhereUniqueInput";
 
 export class TenantControllerBase {
   constructor(protected readonly service: TenantService) {}
@@ -536,6 +539,103 @@ export class TenantControllerBase {
   ): Promise<void> {
     const data = {
       payments: {
+        disconnect: body,
+      },
+    };
+    await this.service.updateTenant({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Get("/:id/tickets")
+  @ApiNestedQuery(TicketFindManyArgs)
+  async findTickets(
+    @common.Req() request: Request,
+    @common.Param() params: TenantWhereUniqueInput
+  ): Promise<Ticket[]> {
+    const query = plainToClass(TicketFindManyArgs, request.query);
+    const results = await this.service.findTickets(params.id, {
+      ...query,
+      select: {
+        assignedTo: true,
+        category: true,
+        createdAt: true,
+        creationDate: true,
+        description: true,
+        dueDate: true,
+        id: true,
+        priority: true,
+        resolution: true,
+        resolutionDate: true,
+        status: true,
+
+        tenant: {
+          select: {
+            id: true,
+          },
+        },
+
+        title: true,
+        updatedAt: true,
+
+        visitor: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/tickets")
+  async connectTickets(
+    @common.Param() params: TenantWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
+        connect: body,
+      },
+    };
+    await this.service.updateTenant({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/tickets")
+  async updateTickets(
+    @common.Param() params: TenantWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
+        set: body,
+      },
+    };
+    await this.service.updateTenant({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/tickets")
+  async disconnectTickets(
+    @common.Param() params: TenantWhereUniqueInput,
+    @common.Body() body: TicketWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tickets: {
         disconnect: body,
       },
     };

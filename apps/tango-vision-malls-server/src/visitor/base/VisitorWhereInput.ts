@@ -17,6 +17,7 @@ import { IsOptional, ValidateNested } from "class-validator";
 import { FeedbackListRelationFilter } from "../../feedback/base/FeedbackListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { StoreReviewsListRelationFilter } from "../../storeReviews/base/StoreReviewsListRelationFilter";
+import { TicketListRelationFilter } from "../../ticket/base/TicketListRelationFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 
 @InputType()
@@ -110,6 +111,18 @@ class VisitorWhereInput {
     nullable: true,
   })
   storeReviewsItems?: StoreReviewsListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => TicketListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => TicketListRelationFilter)
+  @IsOptional()
+  @Field(() => TicketListRelationFilter, {
+    nullable: true,
+  })
+  tickets?: TicketListRelationFilter;
 
   @ApiProperty({
     required: false,

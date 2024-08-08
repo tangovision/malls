@@ -12,6 +12,7 @@ import {
 
 import { FeedbackTitle } from "../feedback/FeedbackTitle";
 import { StoreReviewsTitle } from "../storeReviews/StoreReviewsTitle";
+import { TicketTitle } from "../ticket/TicketTitle";
 
 export const VisitorCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -37,6 +38,14 @@ export const VisitorCreate = (props: CreateProps): React.ReactElement => {
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
           <SelectArrayInput optionText={StoreReviewsTitle} />
+        </ReferenceArrayInput>
+        <ReferenceArrayInput
+          source="tickets"
+          reference="Ticket"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={TicketTitle} />
         </ReferenceArrayInput>
         <DateTimeInput label="visitDate" source="visitDate" />
         <TextInput label="visitorID" source="visitorId" />

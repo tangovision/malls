@@ -73,6 +73,38 @@ import { AdvertisementList } from "./advertisement/AdvertisementList";
 import { AdvertisementCreate } from "./advertisement/AdvertisementCreate";
 import { AdvertisementEdit } from "./advertisement/AdvertisementEdit";
 import { AdvertisementShow } from "./advertisement/AdvertisementShow";
+import { TicketList } from "./ticket/TicketList";
+import { TicketCreate } from "./ticket/TicketCreate";
+import { TicketEdit } from "./ticket/TicketEdit";
+import { TicketShow } from "./ticket/TicketShow";
+import { SupportStaffList } from "./supportStaff/SupportStaffList";
+import { SupportStaffCreate } from "./supportStaff/SupportStaffCreate";
+import { SupportStaffEdit } from "./supportStaff/SupportStaffEdit";
+import { SupportStaffShow } from "./supportStaff/SupportStaffShow";
+import { CustomerFeedbackList } from "./customerFeedback/CustomerFeedbackList";
+import { CustomerFeedbackCreate } from "./customerFeedback/CustomerFeedbackCreate";
+import { CustomerFeedbackEdit } from "./customerFeedback/CustomerFeedbackEdit";
+import { CustomerFeedbackShow } from "./customerFeedback/CustomerFeedbackShow";
+import { IssueCategoryList } from "./issueCategory/IssueCategoryList";
+import { IssueCategoryCreate } from "./issueCategory/IssueCategoryCreate";
+import { IssueCategoryEdit } from "./issueCategory/IssueCategoryEdit";
+import { IssueCategoryShow } from "./issueCategory/IssueCategoryShow";
+import { KnowledgeBaseArticleList } from "./knowledgeBaseArticle/KnowledgeBaseArticleList";
+import { KnowledgeBaseArticleCreate } from "./knowledgeBaseArticle/KnowledgeBaseArticleCreate";
+import { KnowledgeBaseArticleEdit } from "./knowledgeBaseArticle/KnowledgeBaseArticleEdit";
+import { KnowledgeBaseArticleShow } from "./knowledgeBaseArticle/KnowledgeBaseArticleShow";
+import { ServiceLevelAgreementList } from "./serviceLevelAgreement/ServiceLevelAgreementList";
+import { ServiceLevelAgreementCreate } from "./serviceLevelAgreement/ServiceLevelAgreementCreate";
+import { ServiceLevelAgreementEdit } from "./serviceLevelAgreement/ServiceLevelAgreementEdit";
+import { ServiceLevelAgreementShow } from "./serviceLevelAgreement/ServiceLevelAgreementShow";
+import { ServiceRequestList } from "./serviceRequest/ServiceRequestList";
+import { ServiceRequestCreate } from "./serviceRequest/ServiceRequestCreate";
+import { ServiceRequestEdit } from "./serviceRequest/ServiceRequestEdit";
+import { ServiceRequestShow } from "./serviceRequest/ServiceRequestShow";
+import { AssetList } from "./asset/AssetList";
+import { AssetCreate } from "./asset/AssetCreate";
+import { AssetEdit } from "./asset/AssetEdit";
+import { AssetShow } from "./asset/AssetShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -217,6 +249,62 @@ const App = (): React.ReactElement => {
           edit={AdvertisementEdit}
           create={AdvertisementCreate}
           show={AdvertisementShow}
+        />
+        <Resource
+          name="Ticket"
+          list={TicketList}
+          edit={TicketEdit}
+          create={TicketCreate}
+          show={TicketShow}
+        />
+        <Resource
+          name="SupportStaff"
+          list={SupportStaffList}
+          edit={SupportStaffEdit}
+          create={SupportStaffCreate}
+          show={SupportStaffShow}
+        />
+        <Resource
+          name="CustomerFeedback"
+          list={CustomerFeedbackList}
+          edit={CustomerFeedbackEdit}
+          create={CustomerFeedbackCreate}
+          show={CustomerFeedbackShow}
+        />
+        <Resource
+          name="IssueCategory"
+          list={IssueCategoryList}
+          edit={IssueCategoryEdit}
+          create={IssueCategoryCreate}
+          show={IssueCategoryShow}
+        />
+        <Resource
+          name="KnowledgeBaseArticle"
+          list={KnowledgeBaseArticleList}
+          edit={KnowledgeBaseArticleEdit}
+          create={KnowledgeBaseArticleCreate}
+          show={KnowledgeBaseArticleShow}
+        />
+        <Resource
+          name="ServiceLevelAgreement"
+          list={ServiceLevelAgreementList}
+          edit={ServiceLevelAgreementEdit}
+          create={ServiceLevelAgreementCreate}
+          show={ServiceLevelAgreementShow}
+        />
+        <Resource
+          name="ServiceRequest"
+          list={ServiceRequestList}
+          edit={ServiceRequestEdit}
+          create={ServiceRequestCreate}
+          show={ServiceRequestShow}
+        />
+        <Resource
+          name="Asset"
+          list={AssetList}
+          edit={AssetEdit}
+          create={AssetCreate}
+          show={AssetShow}
         />
       </Admin>
     </div>

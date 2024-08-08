@@ -2,6 +2,7 @@ import { ContactLogUpdateManyWithoutTenantsInput } from "./ContactLogUpdateManyW
 import { LeaseAgreementUpdateManyWithoutTenantsInput } from "./LeaseAgreementUpdateManyWithoutTenantsInput";
 import { MaintenanceRequestUpdateManyWithoutTenantsInput } from "./MaintenanceRequestUpdateManyWithoutTenantsInput";
 import { PaymentUpdateManyWithoutTenantsInput } from "./PaymentUpdateManyWithoutTenantsInput";
+import { TicketUpdateManyWithoutTenantsInput } from "./TicketUpdateManyWithoutTenantsInput";
 
 export type TenantUpdateInput = {
   businessType?: string | null;
@@ -16,4 +17,5 @@ export type TenantUpdateInput = {
   payments?: PaymentUpdateManyWithoutTenantsInput;
   status?: "Option1" | null;
   tenantId?: number | null;
+  tickets?: TicketUpdateManyWithoutTenantsInput;
 };
